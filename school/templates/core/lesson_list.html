@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Lesson List{% endblock %}
+
+{% block content %}
+<h2>Lesson List</h2>
+<a href="{% url 'lesson_create' %}" class="btn btn-primary mb-2">Add Lesson</a>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for lesson in lessons %}
+        <tr>
+            <td>{{ lesson.title }}</td>
+            <td>
+                <a href="{% url 'lesson_update' lesson.pk %}" class="btn btn-sm btn-warning">Edit</a>
+                <a href="{% url 'lesson_delete' lesson.pk %}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
