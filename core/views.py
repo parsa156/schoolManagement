@@ -39,9 +39,7 @@ def lesson_delete(request, pk):
 # Student Views
 def student_list(request):
     students = Student.objects.all()
-    jsondata = json.dumps(list(students))
-    return HttpResponse(jsondata, content_type='application/json')
-    # return render(request, 'core/student_list.html', {'students': students})
+    return render(request, 'core/student_list.html', {'students': students})
 
 def student_create(request):
     if request.method == 'POST':
