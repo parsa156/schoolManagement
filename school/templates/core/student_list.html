@@ -1,0 +1,35 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Student List{% endblock %}
+
+{% block content %}
+<h2>Student List</h2>
+<a href="{% url 'student_create' %}" class="btn btn-primary mb-2">Add Student</a>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Lessons</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.name }}</td>
+            <td>{{ student.email }}</td>
+            <td>
+                {% for lesson in student.lessons.all %}
+                <span class="badge badge-info">{{ lesson.title }}</span>
+                {% endfor %}
+            </td>
+            <td>
+                <a href="{% url 'student_update' student.pk %}" class="btn btn-sm btn-warning">Edit</a>
+                <a href="{% url 'student_delete' student.pk %}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
